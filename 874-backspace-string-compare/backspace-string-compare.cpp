@@ -23,12 +23,6 @@ public:
             }
              
         }
-         for(int i=0;i<s1.size();i++){
-                cout<<s1[i];
-            }
-            for(int i=0;i<t1.size();i++){
-                cout<<t1[i];
-            }
         if(s1==t1){
            
             return true;
