@@ -9,7 +9,6 @@ public:
                 res+=c;
             }
             c++;
-           
         }
         return res;
     }
