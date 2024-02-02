@@ -5,7 +5,7 @@ public:
         for(int i=1;i<=9;++i){
             int num = i;
             int nextdig = i+1;
-            while(num<=high && nextdig<=9){
+            while(num*10<=high && nextdig<=9){
                 num = num*10 + nextdig;
                 if(num>=low && num<=high) res.push_back(num);
                 ++nextdig;
