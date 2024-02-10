@@ -1,25 +1,29 @@
-class Solution 
-{
-private:
-    string t;
-    int check(int l, int r, int ans = 0)
-    {
-        while(l >= 0 and r <= t.size())
-        {
-            if(t[l--] == t[r++]) ans++;
-            else break;
-        }
-        return ans;
-    }
+class Solution {
 public:
-    int countSubstrings(string s) 
-    {
-        int n = size(s), ans = 0;t = s;
-        for(int i = 0; i < n; i++)
-        {
-            ans += check(i,i);    // odd length palindromes
-            ans += check(i,i+1); // even length palindromes
+
+    bool ispal(string k){
+        for(int i=0;i<k.length()/2;i++){
+            if(k[i]!=k[k.length()-1-i]){
+                return false;
+            }
         }
-        return ans;
+        return true;
+    }
+    int countSubstrings(string s) {
+        vector<string>t;
+    string k="";
+    for(int i=0;i<s.length();i++){
+        for(int j=i;j<s.length();j++){
+            k+=s[j];
+            //if(t.count(k)<1)
+            if(ispal(k)){
+                t.push_back(k);  
+            }
+               
+            
+        }
+        k="";
+    }
+        return t.size();
     }
 };
