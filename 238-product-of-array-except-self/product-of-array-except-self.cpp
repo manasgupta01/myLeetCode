@@ -9,16 +9,8 @@ public:
                 c++;
             }
         }
-        if(c>1){
-            return ans;
-        }
-        else if(c==0){
-            for(int i=0;i<nums.size();i++){
-                ans[i]=(p/nums[i]);
-            }
-        }
-        else{
-            for(int i=0;i<nums.size();i++){
+        if(c==1){
+              for(int i=0;i<nums.size();i++){
                 if(nums[i]!=0){
                     ans[i]=0;
                 }
@@ -28,6 +20,12 @@ public:
                 
             }
         }
+        else if(c==0){
+            for(int i=0;i<nums.size();i++){
+                ans[i]=(p/nums[i]);
+            }
+        }
+ 
         return ans;
 
     }
