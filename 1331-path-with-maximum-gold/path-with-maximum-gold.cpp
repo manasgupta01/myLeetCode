@@ -1,41 +1,45 @@
 class Solution {
 public:
+    int max = 0;
     int getMaximumGold(vector<vector<int>>& grid) {
-        int m = grid.size();
-        int n = grid[0].size();
-        int maxGold = 0;
-
-        // Helper function for DFS
-        function<int(int, int)> helper = [&](int row, int col) -> int {
-            if (row < 0 || row >= m || col < 0 || col >= n ||
-                grid[row][col] == 0) {
-                return 0;
-            }
-
-            int currentGold = grid[row][col];
-            grid[row][col] = 0; // Mark the cell as visited by setting it to 0
-
-            // Recursively explore all four directions
-            int d = helper(row + 1, col);
-            int u = helper(row - 1, col);
-            int r = helper(row, col + 1);
-            int l = helper(row, col - 1);
-
-            // Restore the cell value
-            grid[row][col] = currentGold;
-
-            return currentGold + max({d, u, r, l});
-        };
-
-        // Iterate over all cells in the grid
-        for (int row = 0; row < m; ++row) {
-            for (int col = 0; col < n; ++col) {
-                if (grid[row][col] > 0) {
-                    maxGold = max(maxGold, helper(row, col));
-                }
+        int count = checkIfGridIsAllZeros(grid);
+        if(count != 0) return count; 
+        
+        for(int i=0; i<grid.size(); i++){
+            for(int j=0; j<grid[0].size(); j++){
+                if(grid[i][j] != 0) traverse(grid, i, j, 0);
             }
         }
+        return max;
+    }
 
-        return maxGold;
+    int checkIfGridIsAllZeros(vector<vector<int>>& grid){
+        int count = 0;
+        for(int i=0; i<grid.size(); i++){
+            for(int j=0; j<grid[0].size(); j++){
+                if(grid[i][j] != 0) count += grid[i][j];
+                else return 0;
+            }
+        }
+        return count;
+    }
+
+    void traverse(vector<vector<int>>& grid, int i, int j, int count){
+        if(i < 0 || i >= grid.size() || j >= grid[0].size() || j < 0) return;
+
+        if(grid[i][j] != 0){
+            int tmp = grid[i][j];
+            grid[i][j] = 0;
+            count += tmp;
+
+            max = std::max(max, count);
+
+            traverse(grid, i+1, j, count);
+            traverse(grid, i-1, j, count);
+            traverse(grid, i, j+1, count);
+            traverse(grid, i, j-1, count);
+
+            grid[i][j] = tmp;
+        }
     }
 };
