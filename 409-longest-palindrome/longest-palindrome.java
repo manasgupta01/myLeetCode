@@ -3,7 +3,9 @@ class Solution {
         int[] counts = new int[128];
         for(char c : s.toCharArray()){
             counts[c]++;
+            System.out.println(c + " "+ counts[c]);
         } 
+        
 
         int result = 0;
         for(int count : counts){
