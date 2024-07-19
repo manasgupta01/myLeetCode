@@ -1,7 +1,6 @@
 class Solution {
 public:
     vector<int> luckyNumbers (vector<vector<int>>& matrix) {
-        vector<int>row;
         set<int>st;
         vector<int>res;
         for(int i=0;i<matrix.size();i++){
