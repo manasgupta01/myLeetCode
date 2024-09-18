@@ -4,6 +4,8 @@ class Solution:
         array = list(map(str, nums))
         
         # Custom sorting with a lambda function
+        #lambda function makes 33 as 3333333333
+        # and                  30 as 3030303030
         array.sort(key=lambda x: x*10, reverse=True)
         
         # Handle the case where the largest number is "0"
