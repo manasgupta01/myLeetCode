@@ -3,7 +3,7 @@ public:
     int maximumSwap(int num) {
         int t = num;
         string s = to_string(t);
-        cout<<s;
+        bool b = false;
         string mx = s;
         for(int i=0;i<s.length()-1;i++){
             int j=i+1;
@@ -12,11 +12,12 @@ public:
                     swap(s[i],s[j]);
                     mx=max(mx,s);
                     swap(s[i],s[j]);
+                    b = true;
                 }
                 j++;
             }
+            if(b) return stoi(mx);
         }
-        int my = stoi(mx);
-        return my;
+        return stoi(mx);
     }
 };
